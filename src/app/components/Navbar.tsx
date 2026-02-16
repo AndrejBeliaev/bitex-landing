@@ -32,7 +32,7 @@ export const Navbar = () => {
           <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
             <Code2 className="text-white w-6 h-6" />
           </div>
-          <span className="text-2xl font-bold text-white tracking-tighter uppercase">DevAgency</span>
+          <span className="text-2xl font-bold text-white tracking-tighter uppercase">BITEX</span>
         </a>
 
         {/* Desktop Menu */}

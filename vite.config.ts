@@ -3,29 +3,134 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
+const siteUrl = 'https://bitex-it.ru'
+const siteTitle = 'Bitex IT — Разработка IT-проектов под ключ'
+const siteDescription =
+  'Bitex IT — разработка веб-приложений, корпоративных систем, SaaS-платформ и IT-решений под ключ. React, Next.js, NestJS, DevOps. Создаём масштабируемые продукты для бизнеса.'
+
 export default defineConfig({
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+
+    {
+      name: 'seo-meta-tags',
+      transformIndexHtml() {
+        return [
+          { tag: 'title', children: siteTitle, injectTo: 'head' },
+
+          {
+            tag: 'meta',
+            attrs: { name: 'description', content: siteDescription },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: {
+              name: 'keywords',
+              content:
+                'разработка сайтов, веб-разработка, IT-компания, разработка под ключ, React разработка, Next.js, NestJS, SaaS разработка, Bitex IT',
+            },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { name: 'robots', content: 'index, follow' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: {
+              name: 'yandex-verification',
+              content: '9424891624da82fd',
+            },
+            injectTo: 'head',
+          },
+
+          // Open Graph
+          {
+            tag: 'meta',
+            attrs: { property: 'og:type', content: 'website' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:url', content: siteUrl },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:title', content: siteTitle },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:description', content: siteDescription },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: {
+              property: 'og:image',
+              content: `${siteUrl}/og-image.jpg`,
+            },
+            injectTo: 'head',
+          },
+
+          {
+            tag: 'link',
+            attrs: { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            injectTo: 'head',
+          },
+
+          // Twitter
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:card', content: 'summary_large_image' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:title', content: siteTitle },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:description', content: siteDescription },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: {
+              name: 'twitter:image',
+              content: `${siteUrl}/og-image.jpg`,
+            },
+            injectTo: 'head',
+          },
+
+          // Canonical
+          {
+            tag: 'link',
+            attrs: { rel: 'canonical', href: siteUrl },
+            injectTo: 'head',
+          },
+
+          // Theme color
+          {
+            tag: 'meta',
+            attrs: { name: 'theme-color', content: '#0f172a' },
+            injectTo: 'head',
+          },
+        ]
+      },
+    },
   ],
+
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
   },
+
   assetsInclude: ['**/*.svg', '**/*.csv'],
-  html: {
-    head: [  
-      {
-        tag: 'meta' as const  as any,
-        attrs: {
-          name: 'yandex-verification',
-          content: '9424891624da82fd',
-        },
-      },
-    ],
-  } as any,
-});
+})
