@@ -79,7 +79,7 @@ export default defineConfig({
 
           {
             tag: 'link',
-            attrs: { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            attrs: { rel: 'icon', type: 'image/x-icon', href: `${siteUrl}/favicon.ico` },
             injectTo: 'head',
           },
 
