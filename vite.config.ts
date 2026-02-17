@@ -72,7 +72,7 @@ export default defineConfig({
             tag: 'meta',
             attrs: {
               property: 'og:image',
-              content: '/og-image.png',
+              content: `${siteUrl}/og-image.png`,
             },
             injectTo: 'head',
           },
