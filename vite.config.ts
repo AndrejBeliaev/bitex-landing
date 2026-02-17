@@ -72,7 +72,7 @@ export default defineConfig({
             tag: 'meta',
             attrs: {
               property: 'og:image',
-              content: `${siteUrl}/og-image.jpg`,
+              content: '/og-image.png',
             },
             injectTo: 'head',
           },
@@ -84,29 +84,29 @@ export default defineConfig({
           },
 
           // Twitter
-          {
-            tag: 'meta',
-            attrs: { name: 'twitter:card', content: 'summary_large_image' },
-            injectTo: 'head',
-          },
-          {
-            tag: 'meta',
-            attrs: { name: 'twitter:title', content: siteTitle },
-            injectTo: 'head',
-          },
-          {
-            tag: 'meta',
-            attrs: { name: 'twitter:description', content: siteDescription },
-            injectTo: 'head',
-          },
-          {
-            tag: 'meta',
-            attrs: {
-              name: 'twitter:image',
-              content: `${siteUrl}/og-image.jpg`,
-            },
-            injectTo: 'head',
-          },
+          // {
+          //   tag: 'meta',
+          //   attrs: { name: 'twitter:card', content: 'summary_large_image' },
+          //   injectTo: 'head',
+          // },
+          // {
+          //   tag: 'meta',
+          //   attrs: { name: 'twitter:title', content: siteTitle },
+          //   injectTo: 'head',
+          // },
+          // {
+          //   tag: 'meta',
+          //   attrs: { name: 'twitter:description', content: siteDescription },
+          //   injectTo: 'head',
+          // },
+          // {
+          //   tag: 'meta',
+          //   attrs: {
+          //     name: 'twitter:image',
+          //     content: `${siteUrl}/og-image.jpg`,
+          //   },
+          //   injectTo: 'head',
+          // },
 
           // Canonical
           {
