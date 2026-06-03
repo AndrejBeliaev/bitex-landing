@@ -3,7 +3,7 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-const siteUrl = 'https://bitex-it.ru'
+const siteUrl = process.env.VITE_SITE_URL || 'https://bitex-it.ru'
 const siteTitle = 'Bitex IT — Разработка IT-проектов под ключ'
 const siteDescription =
   'Bitex IT — разработка веб-приложений, корпоративных систем, SaaS-платформ и IT-решений под ключ. React, Next.js, NestJS, DevOps. Создаём масштабируемые продукты для бизнеса.'
