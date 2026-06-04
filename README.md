@@ -34,7 +34,7 @@ Required GitHub Secrets:
 | --- | --- |
 | `DEPLOY_HOST` | Server host or IP address |
 | `DEPLOY_USER` | SSH user on the server |
-| `DEPLOY_SSH_KEY` | Private SSH key with access to the server |
+| `DEPLOY_SSH_KEY_B64` | Base64-encoded private SSH key with access to the server |
 | `DEPLOY_PATH` | Directory on the server, for example `/opt/bitex-landing` |
 | `DEPLOY_PORT` | SSH port, optional; defaults to `22` |
 | `APP_PORT` | Public port on the server, optional; defaults to `8080` |
