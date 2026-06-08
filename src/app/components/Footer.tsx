@@ -22,6 +22,7 @@ export const Footer = () => {
             <ul className="space-y-4 text-neutral-400">
               <li><a href="/#home" className="hover:text-blue-500 transition-colors">Главная</a></li>
               <li><a href="/#services" className="hover:text-blue-500 transition-colors">Услуги</a></li>
+              <li><a href="/services/razrabotka-sajtov-pod-klyuch" className="hover:text-blue-500 transition-colors">Разработка сайтов под ключ</a></li>
               <li><a href="/#portfolio" className="hover:text-blue-500 transition-colors">Решения</a></li>
               <li><a href="/#process" className="hover:text-blue-500 transition-colors">Процесс</a></li>
               <li><a href="/blog" className="hover:text-blue-500 transition-colors">Блог</a></li>
