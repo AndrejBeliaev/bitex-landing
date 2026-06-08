@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { formatArticleDate, getArticles } from '@/src/lib/articles'
+import { formatArticleDate, formatArticleViews, getArticles } from '@/src/lib/articles'
 
 export async function BlogPreview() {
   const articles = (await getArticles()).slice(0, 3)
@@ -35,11 +35,10 @@ export async function BlogPreview() {
                 />
               )}
               <div className="p-7">
-                {article.publishedAt && (
-                  <time className="text-xs uppercase tracking-widest text-neutral-500">
-                    {formatArticleDate(article.publishedAt)}
-                  </time>
-                )}
+                <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-neutral-500">
+                  {article.publishedAt && <time>{formatArticleDate(article.publishedAt)}</time>}
+                  <span>{formatArticleViews(article.viewCount)} просмотров</span>
+                </div>
                 <h3 className="text-xl font-bold mt-3 mb-4">
                   <a href={`/blog/${article.slug}`} className="hover:text-blue-400 transition-colors">
                     {article.title}

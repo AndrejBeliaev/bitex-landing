@@ -4,6 +4,7 @@ export interface ArticleSummary {
   excerpt?: string | null
   coverUrl?: string | null
   publishedAt?: string | null
+  viewCount: number
 }
 
 export interface Article extends ArticleSummary {
@@ -44,4 +45,8 @@ export function formatArticleDate(value?: string | null) {
     month: 'long',
     year: 'numeric',
   }).format(new Date(value))
+}
+
+export function formatArticleViews(value = 0) {
+  return new Intl.NumberFormat('ru-RU').format(value)
 }

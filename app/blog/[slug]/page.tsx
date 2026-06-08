@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { ArticleViewTracker } from '@/src/app/components/ArticleViewTracker'
 import { Footer } from '@/src/app/components/Footer'
 import { MarkdownArticle } from '@/src/app/components/MarkdownArticle'
 import { Navbar } from '@/src/app/components/Navbar'
-import { formatArticleDate, getArticle } from '@/src/lib/articles'
+import { formatArticleDate, formatArticleViews, getArticle } from '@/src/lib/articles'
 
 export const revalidate = 60
 
@@ -54,6 +55,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
+      <ArticleViewTracker slug={article.slug} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -66,7 +68,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mt-6 mb-6">{article.title}</h1>
             {article.excerpt && <p className="text-xl text-neutral-400 leading-relaxed">{article.excerpt}</p>}
             {article.publishedAt && (
-              <time className="block mt-6 text-sm text-neutral-500">{formatArticleDate(article.publishedAt)}</time>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-neutral-500">
+                <time>{formatArticleDate(article.publishedAt)}</time>
+                <span aria-hidden="true">•</span>
+                <span>{formatArticleViews(article.viewCount)} просмотров</span>
+              </div>
             )}
           </header>
           {article.coverUrl && (

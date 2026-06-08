@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Footer } from '@/src/app/components/Footer'
 import { Navbar } from '@/src/app/components/Navbar'
-import { formatArticleDate, getArticles } from '@/src/lib/articles'
+import { formatArticleDate, formatArticleViews, getArticles } from '@/src/lib/articles'
 
 export const metadata: Metadata = {
   title: 'Блог о веб-разработке и цифровых продуктах',
@@ -39,11 +39,10 @@ export default async function BlogPage() {
                     <img src={article.coverUrl} alt="" className="w-full aspect-[16/9] object-cover" />
                   )}
                   <div className="p-8">
-                    {article.publishedAt && (
-                      <time className="text-xs uppercase tracking-widest text-neutral-500">
-                        {formatArticleDate(article.publishedAt)}
-                      </time>
-                    )}
+                    <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-neutral-500">
+                      {article.publishedAt && <time>{formatArticleDate(article.publishedAt)}</time>}
+                      <span>{formatArticleViews(article.viewCount)} просмотров</span>
+                    </div>
                     <h2 className="text-2xl font-bold mt-3 mb-4">
                       <a href={`/blog/${article.slug}`} className="hover:text-blue-400 transition-colors">
                         {article.title}
