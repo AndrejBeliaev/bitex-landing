@@ -20,18 +20,19 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6">Навигация</h4>
             <ul className="space-y-4 text-neutral-400">
-              <li><a href="#home" className="hover:text-blue-500 transition-colors">Главная</a></li>
-              <li><a href="#services" className="hover:text-blue-500 transition-colors">Услуги</a></li>
-              <li><a href="#portfolio" className="hover:text-blue-500 transition-colors">Решения</a></li>
-              <li><a href="#process" className="hover:text-blue-500 transition-colors">Процесс</a></li>
-              <li><a href="#contact" className="hover:text-blue-500 transition-colors">Контакты</a></li>
+              <li><a href="/#home" className="hover:text-blue-500 transition-colors">Главная</a></li>
+              <li><a href="/#services" className="hover:text-blue-500 transition-colors">Услуги</a></li>
+              <li><a href="/#portfolio" className="hover:text-blue-500 transition-colors">Решения</a></li>
+              <li><a href="/#process" className="hover:text-blue-500 transition-colors">Процесс</a></li>
+              <li><a href="/blog" className="hover:text-blue-500 transition-colors">Блог</a></li>
+              <li><a href="/#contact" className="hover:text-blue-500 transition-colors">Контакты</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold mb-6">Информация</h4>
             <ul className="space-y-4 text-neutral-400">
-              <li><a href="/privacy.html" className="hover:text-blue-500 transition-colors">Политика конфиденциальности</a></li>
+              <li><a href="/privacy" className="hover:text-blue-500 transition-colors">Политика конфиденциальности</a></li>
               <li><a href="mailto:info@bitexit.ru" className="hover:text-blue-500 transition-colors">info@bitexit.ru</a></li>
               <li><a href="tel:+79378511716" className="hover:text-blue-500 transition-colors">+7 (937) 851-17-16</a></li>
             </ul>

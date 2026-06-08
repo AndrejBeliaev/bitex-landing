@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Menu, X, Code2 } from "lucide-react";
 
-export const Navbar = () => {
+export const Navbar = ({ solid = false }: { solid?: boolean }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,21 +16,24 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Главная", href: "#home" },
-    { name: "Услуги", href: "#services" },
-    { name: "Решения", href: "#portfolio" },
-    { name: "Процесс", href: "#process" },
-    { name: "Контакты", href: "#contact" },
+    { name: "Главная", href: "/#home" },
+    { name: "Услуги", href: "/#services" },
+    { name: "Решения", href: "/#portfolio" },
+    { name: "Процесс", href: "/#process" },
+    { name: "Блог", href: "/blog" },
+    { name: "Контакты", href: "/#contact" },
   ];
 
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-neutral-950/80 backdrop-blur-xl border-b border-neutral-800 py-4" : "bg-transparent py-6"
+        solid || isScrolled
+          ? "bg-neutral-950/95 backdrop-blur-xl border-b border-neutral-800 py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
+        <a href="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
             <Code2 className="text-white w-6 h-6" />
           </div>
@@ -47,7 +52,7 @@ export const Navbar = () => {
             </a>
           ))}
           <a 
-            href="#contact" 
+            href="/#contact"
             className="px-6 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition-all"
           >
             Связаться
@@ -80,7 +85,7 @@ export const Navbar = () => {
                 </a>
               ))}
               <a 
-                href="#contact" 
+                href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full py-4 bg-blue-600 text-white text-center font-bold rounded-xl"
               >

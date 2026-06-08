@@ -6,12 +6,11 @@ import { Process } from "./components/Process";
 import { Faq } from "./components/Faq";
 import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
-import { Toaster } from "sonner";
+import { BlogPreview } from "./components/BlogPreview";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-neutral-950 font-sans selection:bg-blue-500 selection:text-white">
-      <Toaster position="top-right" theme="dark" />
       <Navbar />
       <main>
         <Hero />
@@ -61,6 +60,7 @@ export default function App() {
         </section>
 
         <Faq />
+        <BlogPreview />
         <ContactForm />
       </main>
       <Footer />

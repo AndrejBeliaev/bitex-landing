@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Mail, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
@@ -165,7 +167,7 @@ export const ContactForm = () => {
               </button>
               <p className="text-xs text-neutral-500 leading-relaxed text-center">
                 Нажимая кнопку, вы соглашаетесь с{" "}
-                <a href="/privacy.html" className="text-neutral-300 underline hover:text-white">
+                <a href="/privacy" className="text-neutral-300 underline hover:text-white">
                   политикой обработки персональных данных
                 </a>.
               </p>
