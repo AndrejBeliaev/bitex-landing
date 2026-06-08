@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: bitex-it.ru
 Sitemap: https://bitex-it.ru/sitemap.xml

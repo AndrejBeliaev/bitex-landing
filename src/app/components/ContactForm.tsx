@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion } from "motion/react";
 import { Mail, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 
@@ -27,7 +26,7 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("https://bitex-it.ru/api/lead", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -56,16 +55,12 @@ export const ContactForm = () => {
     <section id="contact" className="py-24 bg-neutral-900 text-white">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
               Готовы начать <span className="text-blue-500">новый проект?</span>
             </h2>
             <p className="text-neutral-400 text-lg mb-12">
-              Оставьте заявку, и наши специалисты свяжутся с вами для обсуждения деталей и составления предварительной оценки.
+              Расскажите о задаче в нескольких предложениях. Уточним детали, предложим первый шаг и подготовим предварительную оценку.
             </p>
 
             <div className="space-y-8">
@@ -75,7 +70,7 @@ export const ContactForm = () => {
                 </div>
                 <div>
                   <p className="text-sm text-neutral-500 uppercase tracking-widest">Email</p>
-                  <p className="text-xl font-medium">info@bitexit.ru</p>
+                  <a href="mailto:info@bitexit.ru" className="text-xl font-medium hover:text-blue-400 transition-colors">info@bitexit.ru</a>
                 </div>
               </div>
 
@@ -85,23 +80,21 @@ export const ContactForm = () => {
                 </div>
                 <div>
                   <p className="text-sm text-neutral-500 uppercase tracking-widest">Телефон</p>
-                  <p className="text-xl font-medium">+7 (937) 851-17-16</p>
+                  <a href="tel:+79378511716" className="text-xl font-medium hover:text-blue-400 transition-colors">+7 (937) 851-17-16</a>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-neutral-950 p-8 md:p-12 rounded-3xl border border-neutral-800 shadow-2xl"
-          >
+          <div className="bg-neutral-950 p-8 md:p-12 rounded-3xl border border-neutral-800 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-neutral-400 ml-1">Имя</label>
+                  <label htmlFor="lead-name" className="text-sm text-neutral-400 ml-1">Имя</label>
                   <input
+                    id="lead-name"
+                    name="name"
+                    autoComplete="name"
                     required
                     type="text"
                     value={form.name}
@@ -112,8 +105,11 @@ export const ContactForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm text-neutral-400 ml-1">Email</label>
+                  <label htmlFor="lead-email" className="text-sm text-neutral-400 ml-1">Email</label>
                   <input
+                    id="lead-email"
+                    name="email"
+                    autoComplete="email"
                     required
                     type="email"
                     value={form.email}
@@ -126,8 +122,11 @@ export const ContactForm = () => {
 
               {/* опционально: телефон */}
               <div className="space-y-2">
-                <label className="text-sm text-neutral-400 ml-1">Телефон (необязательно)</label>
+                <label htmlFor="lead-phone" className="text-sm text-neutral-400 ml-1">Телефон (необязательно)</label>
                 <input
+                  id="lead-phone"
+                  name="phone"
+                  autoComplete="tel"
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
@@ -137,8 +136,10 @@ export const ContactForm = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm text-neutral-400 ml-1">О проекте</label>
+                <label htmlFor="lead-message" className="text-sm text-neutral-400 ml-1">О проекте</label>
                 <textarea
+                  id="lead-message"
+                  name="message"
                   required
                   rows={4}
                   value={form.message}
@@ -149,6 +150,7 @@ export const ContactForm = () => {
               </div>
 
               <button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 group"
               >
@@ -161,8 +163,14 @@ export const ContactForm = () => {
                   </>
                 )}
               </button>
+              <p className="text-xs text-neutral-500 leading-relaxed text-center">
+                Нажимая кнопку, вы соглашаетесь с{" "}
+                <a href="/privacy.html" className="text-neutral-300 underline hover:text-white">
+                  политикой обработки персональных данных
+                </a>.
+              </p>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

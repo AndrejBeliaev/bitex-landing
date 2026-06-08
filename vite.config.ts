@@ -4,9 +4,64 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 const siteUrl = process.env.VITE_SITE_URL || 'https://bitex-it.ru'
-const siteTitle = 'Bitex IT — Разработка IT-проектов под ключ'
+const siteTitle = 'Разработка сайтов и веб-сервисов под ключ — Bitex IT'
 const siteDescription =
-  'Bitex IT — разработка веб-приложений, корпоративных систем, SaaS-платформ и IT-решений под ключ. React, Next.js, NestJS, DevOps. Создаём масштабируемые продукты для бизнеса.'
+  'Bitex IT проектирует и разрабатывает сайты, веб-сервисы, SaaS-платформы и мобильные приложения для бизнеса. Оценим задачу и предложим план реализации.'
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Bitex IT',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  image: `${siteUrl}/og-image.png`,
+  description: siteDescription,
+  email: 'info@bitexit.ru',
+  telephone: '+7-937-851-17-16',
+  areaServed: {
+    '@type': 'Country',
+    name: 'Россия',
+  },
+  knowsAbout: [
+    'Разработка сайтов',
+    'Веб-разработка',
+    'Разработка веб-сервисов',
+    'SaaS',
+    'Мобильные приложения',
+    'Автоматизация бизнеса',
+  ],
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Сколько стоит разработка сайта или веб-сервиса?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Стоимость зависит от состава функций, интеграций и требований к дизайну. После короткого знакомства Bitex IT бесплатно уточняет задачу и готовит предварительную оценку.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Можно ли начать с прототипа?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Да. Для новой идеи можно сначала подготовить прототип или MVP, проверить ключевые сценарии и только затем развивать полноценный продукт.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Работает ли Bitex IT с уже существующими проектами?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Да. Команда может провести технический аудит, исправить проблемы, ускорить сайт или продолжить разработку существующего продукта.',
+      },
+    },
+  ],
+}
 
 export default defineConfig({
   plugins: [
@@ -29,7 +84,7 @@ export default defineConfig({
             attrs: {
               name: 'keywords',
               content:
-                'разработка сайтов, веб-разработка, IT-компания, разработка под ключ, React разработка, Next.js, NestJS, SaaS разработка, Bitex IT',
+                'разработка сайтов, разработка веб-сервисов, веб-разработка под ключ, SaaS разработка, мобильные приложения, Bitex IT',
             },
             injectTo: 'head',
           },
@@ -55,6 +110,16 @@ export default defineConfig({
           },
           {
             tag: 'meta',
+            attrs: { property: 'og:locale', content: 'ru_RU' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:site_name', content: 'Bitex IT' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
             attrs: { property: 'og:url', content: siteUrl },
             injectTo: 'head',
           },
@@ -76,37 +141,52 @@ export default defineConfig({
             },
             injectTo: 'head',
           },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:image:width', content: '1200' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:image:height', content: '1200' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { property: 'og:image:alt', content: 'Bitex IT — разработка сайтов и веб-сервисов' },
+            injectTo: 'head',
+          },
 
           {
             tag: 'link',
-            attrs: { rel: 'icon', type: 'image/x-icon', href: `${siteUrl}/favicon.ico` },
+            attrs: { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
             injectTo: 'head',
           },
 
           // Twitter
-          // {
-          //   tag: 'meta',
-          //   attrs: { name: 'twitter:card', content: 'summary_large_image' },
-          //   injectTo: 'head',
-          // },
-          // {
-          //   tag: 'meta',
-          //   attrs: { name: 'twitter:title', content: siteTitle },
-          //   injectTo: 'head',
-          // },
-          // {
-          //   tag: 'meta',
-          //   attrs: { name: 'twitter:description', content: siteDescription },
-          //   injectTo: 'head',
-          // },
-          // {
-          //   tag: 'meta',
-          //   attrs: {
-          //     name: 'twitter:image',
-          //     content: `${siteUrl}/og-image.jpg`,
-          //   },
-          //   injectTo: 'head',
-          // },
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:card', content: 'summary_large_image' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:title', content: siteTitle },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: { name: 'twitter:description', content: siteDescription },
+            injectTo: 'head',
+          },
+          {
+            tag: 'meta',
+            attrs: {
+              name: 'twitter:image',
+              content: `${siteUrl}/og-image.png`,
+            },
+            injectTo: 'head',
+          },
 
           // Canonical
           {
@@ -119,6 +199,18 @@ export default defineConfig({
           {
             tag: 'meta',
             attrs: { name: 'theme-color', content: '#0f172a' },
+            injectTo: 'head',
+          },
+          {
+            tag: 'script',
+            attrs: { type: 'application/ld+json' },
+            children: JSON.stringify(organizationSchema),
+            injectTo: 'head',
+          },
+          {
+            tag: 'script',
+            attrs: { type: 'application/ld+json' },
+            children: JSON.stringify(faqSchema),
             injectTo: 'head',
           },
           {

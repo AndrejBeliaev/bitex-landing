@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Code2 } from "lucide-react";
 
 export const Navbar = () => {
@@ -17,7 +16,8 @@ export const Navbar = () => {
   const navLinks = [
     { name: "Главная", href: "#home" },
     { name: "Услуги", href: "#services" },
-    { name: "Портфолио", href: "#portfolio" },
+    { name: "Решения", href: "#portfolio" },
+    { name: "Процесс", href: "#process" },
     { name: "Контакты", href: "#contact" },
   ];
 
@@ -58,20 +58,16 @@ export const Navbar = () => {
         <button 
           className="md:hidden text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-neutral-950 border-b border-neutral-800 overflow-hidden"
-          >
+      {isMobileMenuOpen && (
+          <div className="md:hidden bg-neutral-950 border-b border-neutral-800 overflow-hidden">
             <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <a 
@@ -91,9 +87,8 @@ export const Navbar = () => {
                 Оставить заявку
               </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </nav>
   );
 };
