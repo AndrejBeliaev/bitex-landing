@@ -94,13 +94,14 @@ jobs:
           DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
           IMAGE: ${{ needs.build-and-push.outputs.image }}
           APP_PORT: ${{ secrets.APP_PORT }}
-          API_URL: ${{ secrets.API_URL }}
+          SERVER_API_URL: ${{ secrets.SERVER_API_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
         run: |
+          RUNTIME_API_URL="${SERVER_API_URL:-http://bitex-cms-api-1:4000/api}"
           {
             echo "IMAGE=$IMAGE"
             echo "APP_PORT=${APP_PORT:-8080}"
-            echo "API_URL=$API_URL"
+            echo "API_URL=$RUNTIME_API_URL"
             echo "NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://bitex-it.ru}"
           } > .env.deploy
           scp -i ~/.ssh/deploy_key -P "${DEPLOY_PORT:-22}" .env.deploy "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/.env"
